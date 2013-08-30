@@ -1,0 +1,15 @@
+BuildingBlocks is a library of reusable code designed to form the foundation of 
+more complex web applications.  The intended audience is developers who need a 
+quick start getting their projects going and don't want to reinvent the wheel.
+
+The driving principles behind the design are:
+
+  1. component based: you should be able to pick and choose the pieces you like.
+
+  2. designed for integration: you can easily combine this code with an existing
+     application.
+
+  3. designed for customization: the database and libraries are documented and 
+     designed to be extended and changed to suit your project.
+
+

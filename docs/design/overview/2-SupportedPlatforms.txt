@@ -1,0 +1,24 @@
+Operating system:
+=================
+
+BuildingBlocks are developed under Linux, but the intent is that they should work 
+under any operating system that supports the prerequisite databases and libraries.
+
+
+Databases:
+==========
+
+PostgreSQL 9.2+, MySQL 5.6+, MariaDB 5.5+.
+
+Other versions should work as well, but these are what we use for development.
+
+
+Languages:
+==========
+
+PHP 5.4+, Python 2.7+.
+
+Other versions should work, but these are what we use for development.
+
+
+

@@ -1,0 +1,6 @@
+The user module is designed to either be standalone, or to replace the WordPress 
+users table.  We abstract away the underlying implementation through the use of 
+database views and stored procedures.
+
+
+
