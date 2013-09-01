@@ -94,16 +94,17 @@ VALUES
 	;
 
 DELIMITER $$
-CREATE FUNCTION session2user_id(
+
+DROP FUNCTION IF EXISTS blocks_session2user$$
+CREATE FUNCTION blocks_session2user(
 	domain_id_		INT,
 	session_key1_		VARCHAR(41),
 	session_key2_		VARCHAR(41)
-)
+) RETURNS INT
 BEGIN
-	DECLARE user_id_ 	INT;
-	SET user_id_ = 0;
+	DECLARE user_id_ 	INT DEFAULT 0;
 
-	SELECT id 
+	SELECT s.id 
 	FROM blocks_sessions s
 	WHERE 
 		s.session_key1 = session_key1_ 
@@ -114,7 +115,28 @@ BEGIN
 END;
 $$
 
-CREATE PROCEDURE login(
+-- Status codes:
+--	1	0k
+--	3	Username exists
+--
+DROP PROCEDURE IF EXISTS blocks_create_user$$
+CREATE PROCEDURE blocks_create_user(
+	IN domain_id_		INT,
+	IN firstname_		TEXT,
+	IN lastname_		TEXT,
+	IN username_		TEXT,
+	IN password_		TEXT,
+	OUT user_id_		INT,
+	OUT status_		INT
+)
+BEGIN
+		
+END;
+$$
+
+	
+DROP PROCEDURE IF EXISTS blocks_login;
+CREATE PROCEDURE blocks_login(
 	IN username_ 		TEXT,
 	IN password_ 		TEXT,
 	IN expires_at_		TIMESTAMP,
@@ -132,8 +154,8 @@ BEGIN
 	FROM blocks_people p, blocks_users u
 	WHERE 
 		    u.username = username_
-		AND u.password_hash = PASSWORD( CONCAT( password_, u.id, u.created) ),
-		AND u.
+		AND u.password_hash = PASSWORD( CONCAT( password_, u.id, u.created) )
+--		AND u.
 		AND u.person_id = p.id
 	INTO firstname_, lastname_, user_id_;
 
